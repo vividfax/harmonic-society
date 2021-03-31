@@ -96,7 +96,9 @@ function playSound(i) {
 
 function stopSound(i) {
 
-	loops[i].stop();
+	if (loops[i] != undefined) {
+		loops[i].stop();
+	}
 }
 
 function drawResources() {

@@ -6,6 +6,7 @@ let resources = {
     ingredients: 0,
     herbs: 0,
     food: 0,
+    people: 0,
 };
 
 function manageResources(i) {
@@ -19,8 +20,13 @@ function manageResources(i) {
             break;
         case "C":
             resources.food += 1;
-            resources.ingredients-= 1;
+            resources.ingredients -= 1;
             resources.buildings -= 1;
+            resources.wood -= 1;
+            break;
+        case "E":
+            resources.people += 1;
+            resources.food -= 1;
             break;
         case "F":
             resources.ingredients += 1;
@@ -67,9 +73,16 @@ function getButtonStatus(i) {
             }
             break;
         case "C":
-            if (resources.ingredients >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.ingredients >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.ingredients < 1 || resources.buildings < 1 && status == "active") {
+            } else if (resources.ingredients < 1 || resources.buildings < 1 || resources.wood < 1 && status == "active") {
+                return "disabled";
+            }
+            break;
+        case "E":
+            if (resources.food >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.food < 1 && status == "active") {
                 return "disabled";
             }
             break;
