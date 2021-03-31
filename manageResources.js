@@ -7,19 +7,25 @@ let resources = {
     herbs: 0,
     food: 0,
     people: 0,
+    gold: 0,
 };
 
 function manageResources(i) {
 
     switch(qwerty[i]) {
+        case "A":
+            resources.gold += 2;
+            resources.wood -= 1;
+            resources.buildings -= 1;
+            break;
         case "B":
-            resources.buildings += 1;
+            resources.buildings += 3;
             resources.stone -= 1;
             resources.tools -= 1;
             resources.wood -= 1;
             break;
         case "C":
-            resources.food += 1;
+            resources.food += 3;
             resources.ingredients -= 1;
             resources.buildings -= 1;
             resources.wood -= 1;
@@ -35,7 +41,7 @@ function manageResources(i) {
         case "G":
             resources.ingredients += 1;
             resources.herbs += 1;
-            resources.tools -= 1;
+            resources.tools -= 2;
             break;
         case "H":
             resources.ingredients += 1;
@@ -45,8 +51,13 @@ function manageResources(i) {
             resources.tools += 1;
             resources.stone -= 1;
             break;
+        case "L":
+            resources.food += 2;
+            resources.buildings -= 1;
+            resources.people -= 1;
+            break;
         case "M":
-            resources.stone += 1;
+            resources.stone += 2;
             break;
         case "P":
             resources.herbs += 1;
@@ -54,8 +65,22 @@ function manageResources(i) {
             resources.tools -= 1;
             resources.buildings -= 1;
             break;
+        case "R":
+            resources.tools += 2;
+            resources.people -= 1;
+            resources.buildings -= 1;
+            break;
         case "T":
             resources.wood += 1;
+            break;
+        case "X":
+            resources.gold -= 2;
+            break;
+        case "Y":
+            resources.wood += 1;
+            resources.stone += 1;
+            resources.people -= 1;
+            resources.buildings -= 1;
             break;
     }
 }
@@ -65,6 +90,13 @@ function getButtonStatus(i) {
     let status = buttons[i].status;
 
     switch(qwerty[i]) {
+        case "A":
+            if (resources.wood >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.wood < 1 || resources.buildings < 1 && status == "active") {
+                return "disabled";
+            }
+            break;
         case "B":
             if (resources.stone >= 1 && resources.tools >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
@@ -114,6 +146,13 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "L":
+            if (resources.people >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.people < 1 || resources.buildings < 1 || resources.wood < 1 && status == "active") {
+                return "disabled";
+            }
+            break;
         case "M":
             break;
         case "P":
@@ -123,7 +162,28 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "R":
+            if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.people < 1 || resources.buildings < 1 && status == "active") {
+                return "disabled";
+            }
+            break;
         case "T":
+            break;
+        case "X":
+            if (resources.gold >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.gold < 1 && status == "active") {
+                return "disabled";
+            }
+            break;
+        case "Y":
+            if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.people < 1 || resources.buildings < 1 && status == "active") {
+                return "disabled";
+            }
             break;
     }
     return status;
