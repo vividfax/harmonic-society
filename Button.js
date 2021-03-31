@@ -58,7 +58,7 @@ class Button {
 
         strokeWeight(4);
         stroke("#B1B1B1");
-        noFill();
+        fill("#333");
         rect(this.x, this.y, this.size, this.size, this.borderRadius);
     }
 }
