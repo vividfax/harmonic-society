@@ -18,7 +18,9 @@ function setup() {
 
 function draw() {
 
-	console.log(resources);
+	background("#333");
+
+	drawResources();
 
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -95,4 +97,12 @@ function playSound(i) {
 function stopSound(i) {
 
 	loops[i].stop();
+}
+
+function drawResources() {
+
+	fill(255);
+	textAlign(LEFT, CENTER);
+	textSize(12);
+	text(JSON.stringify(resources), 50, 50);
 }
