@@ -29,7 +29,7 @@ function draw() {
 
 	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 
-	image(logo, width - 50 - 64, 40);
+	image(logo, width - 50 - 66, 40, logo.width/3, logo.height/3);
 	fill(colors.light);
 	noStroke();
 	textSize(12);

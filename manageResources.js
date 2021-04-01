@@ -8,6 +8,7 @@ let resources = {
     food: 0,
     people: 0,
     gold: 0,
+    machines: 0,
 };
 
 function manageResources(i) {
@@ -30,6 +31,11 @@ function manageResources(i) {
             resources.buildings -= 1;
             resources.wood -= 1;
             break;
+        case "D":
+            resources.people += 2;
+            resources.herbs -= 1;
+            resources.buildings -= 1;
+            break;
         case "E":
             resources.people += 2;
             resources.food -= 2;
@@ -47,6 +53,12 @@ function manageResources(i) {
             resources.ingredients += 1;
             resources.tools -= 1;
             break;
+        case "I":
+            resources.machines += 3;
+            resources.tools -= 1;
+            resources.people -= 1;
+            resources.buildings -= 1;
+            break;
         case "K":
             resources.tools += 1;
             resources.stone -= 1;
@@ -59,6 +71,12 @@ function manageResources(i) {
         case "M":
             resources.stone += 2;
             break;
+        case "N":
+            resources.tools += 4;
+            resources.machines -= 1;
+            resources.people -= 1;
+            resources.buildings -= 1;
+            break;
         case "P":
             resources.herbs += 1;
             resources.food += 1;
@@ -66,12 +84,24 @@ function manageResources(i) {
             resources.buildings -= 1;
             break;
         case "R":
-            resources.tools += 3;
+            resources.tools += 1;
+            resources.buildings += 1;
             resources.people -= 1;
-            resources.buildings -= 1;
             break;
         case "T":
             resources.wood += 1;
+            break;
+        case "U":
+            resources.gold += 3;
+            resources.machinery -= 1;
+            resources.buildings -= 1;
+            resources.people -= 1;
+            break;
+        case "W":
+            resources.gold += 3;
+            resources.herbs -= 1;
+            resources.buildings -= 1;
+            resources.people -= 1;
             break;
         case "X":
             resources.gold -= 2;
@@ -111,6 +141,13 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "D":
+            if (resources.herbs >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.herbs < 1 || resources.buildings < 1 || resources.wood < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
         case "E":
             if (resources.food >= 1 && status == "disabled") {
                 return "inactive";
@@ -139,6 +176,13 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "I":
+            if (resources.tools >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.tools < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
         case "K":
             if (resources.stone >= 1 && status == "disabled") {
                 return "inactive";
@@ -155,6 +199,13 @@ function getButtonStatus(i) {
             break;
         case "M":
             break;
+        case "N":
+            if (resources.machines >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.machines < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
         case "P":
             if (resources.tools >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
@@ -163,13 +214,27 @@ function getButtonStatus(i) {
             }
             break;
         case "R":
-            if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.people >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.people < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "T":
+            break;
+        case "U":
+            if (resources.machines >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.machines < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
+        case "U":
+            if (resources.herbs >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.herbs < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
             break;
         case "X":
             if (resources.gold >= 1 && status == "disabled") {
