@@ -38,6 +38,11 @@ function draw() {
 
 	// drawResources();
 
+	textSize(40);
+	textAlign(CENTER, CENTER);
+	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	text(score, width/2, height/4);
+
 	for (let i = 0; i < qwerty.length; i++) {
 
 		if (buttons[i].status != getButtonStatus(i) && getButtonStatus(i) == "disabled") {

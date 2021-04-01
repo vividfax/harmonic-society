@@ -8,7 +8,8 @@ let resources = {
     food: 0,
     people: 0,
     gold: 0,
-    machines: 0,
+    machinery: 0,
+    score: 0,
 };
 
 function manageResources(i) {
@@ -54,7 +55,7 @@ function manageResources(i) {
             resources.tools -= 1;
             break;
         case "I":
-            resources.machines += 3;
+            resources.machinery += 3;
             resources.tools -= 1;
             resources.people -= 1;
             resources.buildings -= 1;
@@ -73,7 +74,7 @@ function manageResources(i) {
             break;
         case "N":
             resources.tools += 4;
-            resources.machines -= 1;
+            resources.machinery -= 1;
             resources.people -= 1;
             resources.buildings -= 1;
             break;
@@ -89,7 +90,7 @@ function manageResources(i) {
             resources.people -= 1;
             break;
         case "T":
-            resources.wood += 1;
+            resources.wood += 2;
             break;
         case "U":
             resources.gold += 3;
@@ -104,6 +105,7 @@ function manageResources(i) {
             resources.people -= 1;
             break;
         case "X":
+            resources.score += 1;
             resources.gold -= 2;
             break;
         case "Y":
@@ -200,9 +202,9 @@ function getButtonStatus(i) {
         case "M":
             break;
         case "N":
-            if (resources.machines >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.machinery >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.machines < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.machinery < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -223,9 +225,9 @@ function getButtonStatus(i) {
         case "T":
             break;
         case "U":
-            if (resources.machines >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.machinery >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.machines < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.machinery < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;

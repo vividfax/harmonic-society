@@ -35,14 +35,20 @@ class Button {
             this.strokeWeight = 4;
         }
         strokeWeight(this.strokeWeight);
-        stroke(colors.light);
-        fill(colors.light);
+
+        if (this.letter == "X") {
+            stroke("#FFD15A");
+            fill("#FFD15A");
+        } else {
+            stroke(colors.light);
+            fill(colors.light);
+        }
         rect(this.x, this.y, this.size, this.size, this.borderRadius);
 
         fill(colors.dark);
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(20);
+        textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
     }
 
@@ -54,14 +60,20 @@ class Button {
             this.strokeWeight = 4;
         }
         strokeWeight(this.strokeWeight);
-        stroke(colors.medium);
-        fill(colors.medium);
+
+        if (this.letter == "X") {
+            stroke("#FFD15A");
+            fill("#FFDF8E");
+        } else {
+            stroke(colors.medium);
+            fill(colors.medium);
+        }
         rect(this.x, this.y, this.size, this.size, this.borderRadius);
 
         fill(colors.dark);
         noStroke();
         textAlign(CENTER, CENTER);
-        textSize(20);
+        textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
     }
 
@@ -73,10 +85,11 @@ class Button {
             size = -2;
             x = 1;
             y = 1;
+        } else {
+            this.strokeWeight = 4;
         }
         strokeWeight(this.strokeWeight);
         stroke(colors.medium);
-        // fill(colors.dark);
         noFill();
         rect(this.x + x, this.y + y, this.size + size, this.size + size, this.borderRadius);
     }
