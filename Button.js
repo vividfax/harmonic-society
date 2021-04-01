@@ -8,6 +8,7 @@ class Button {
         this.letter = letter;
         this.size = 61;
         this.borderRadius = 7;
+        this.strokeWeight = 4;
         this.status = "disabled";
     }
 
@@ -28,7 +29,12 @@ class Button {
 
     drawActive() {
 
-        strokeWeight(4);
+        if (keyIsDown(this.letter.charCodeAt(0))) {
+            this.strokeWeight = 2;
+        } else {
+            this.strokeWeight = 4;
+        }
+        strokeWeight(this.strokeWeight);
         stroke(colors.light);
         fill(colors.light);
         rect(this.x, this.y, this.size, this.size, this.borderRadius);
@@ -42,7 +48,12 @@ class Button {
 
     drawInactive() {
 
-        strokeWeight(4);
+        if (keyIsDown(this.letter.charCodeAt(0))) {
+            this.strokeWeight = 2;
+        } else {
+            this.strokeWeight = 4;
+        }
+        strokeWeight(this.strokeWeight);
         stroke(colors.medium);
         fill(colors.medium);
         rect(this.x, this.y, this.size, this.size, this.borderRadius);
@@ -56,10 +67,17 @@ class Button {
 
     drawDisabled() {
 
-        strokeWeight(4);
+        let x = 0, y = 0, size = 0;
+
+        if (keyIsDown(this.letter.charCodeAt(0))) {
+            size = -2;
+            x = 1;
+            y = 1;
+        }
+        strokeWeight(this.strokeWeight);
         stroke(colors.medium);
         // fill(colors.dark);
         noFill();
-        rect(this.x, this.y, this.size, this.size, this.borderRadius);
+        rect(this.x + x, this.y + y, this.size + size, this.size + size, this.borderRadius);
     }
 }

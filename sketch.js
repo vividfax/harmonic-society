@@ -49,7 +49,6 @@ function draw() {
 			manageResources(i);
 		}
 		buttons[i].drawButton();
-
 	}
 }
 
@@ -76,15 +75,15 @@ function createButtons() {
 
 	let startPoint = width/2 - (65+padding) * 10 / 2;
 	for (let i = 0; i < 10; i++) {
-		buttons[i] = new Button(startPoint + (65+padding) * i, height/2, qwerty[i]);
+		buttons[i] = new Button(startPoint + (65+padding) * i + padding/2, height/2, qwerty[i]);
 	}
 	startPoint = width/2 - (65+padding) * 9 / 2 - 20;
 	for (let i = 10; i < 19; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 10), height/2 + padding + 65, qwerty[i]);
+buttons[i] = new Button(startPoint + (65+padding) * (i - 10) + padding/2, height/2 + padding + 65, qwerty[i]);
 	}
 	startPoint = width/2 - (65+padding) * 8 / 2 - 40;
 	for (let i = 19; i < 26; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 19), height/2 + padding * 2 + 65 * 2, qwerty[i]);
+buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height/2 + padding * 2 + 65 * 2, qwerty[i]);
 	}
 }
 
@@ -137,17 +136,17 @@ function setGradient(x, y, w, h, c1, c2) {
 
 function colorLerp(a, b, amount) {
 
-        let ah = parseInt(a.replace(/#/g, ""), 16),
-            ar = ah >> 16,
-            ag = ah >> 8 & 0xff,
-            ab = ah & 0xff,
-            bh = parseInt(b.replace(/#/g, ""), 16),
-            br = bh >> 16,
-            bg = bh >> 8 & 0xff,
-            bb = bh & 0xff,
-            rr = ar + amount * (br - ar),
-            rg = ag + amount * (bg - ag),
-            rb = ab + amount * (bb - ab);
+    let ah = parseInt(a.replace(/#/g, ""), 16),
+        ar = ah >> 16,
+        ag = ah >> 8 & 0xff,
+        ab = ah & 0xff,
+        bh = parseInt(b.replace(/#/g, ""), 16),
+        br = bh >> 16,
+        bg = bh >> 8 & 0xff,
+        bb = bh & 0xff,
+        rr = ar + amount * (br - ar),
+        rg = ag + amount * (bg - ag),
+        rb = ab + amount * (bb - ab);
 
-        return "#" + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
-    }
+    return "#" + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
+}
