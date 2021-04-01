@@ -1,12 +1,21 @@
 let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+
 let buttons = [];
 let players = [];
 let loops = [];
 
+let logo;
+
+function preload() {
+
+	logo = loadImage('logo.svg');
+}
+
 function setup() {
 
 	createCanvas(windowWidth, windowHeight);
-	background("#333");
+	background(colors.dark);
+	textFont("Nunito");
 
 	createButtons();
 	buttons[4].status = "inactive";
@@ -18,9 +27,16 @@ function setup() {
 
 function draw() {
 
-	background("#333");
+	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 
-	drawResources();
+	image(logo, width - 50 - 64, 40);
+	fill(colors.light);
+	noStroke();
+	textSize(12);
+	textAlign(RIGHT, CENTER);
+	text("A game by Rianna Suen\n and Struan Fraser", width - 50, 100)
+
+	// drawResources();
 
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -108,3 +124,30 @@ function drawResources() {
 	textSize(12);
 	text(JSON.stringify(resources), 50, 50);
 }
+
+function setGradient(x, y, w, h, c1, c2) {
+
+    for (let i = y; i <= y + h; i++) {
+      let inter = map(i, y, y + h, 0, 1);
+      let c = colorLerp(c1, c2, inter);
+      stroke(c);
+      line(x, i, x + w, i);
+	}
+}
+
+function colorLerp(a, b, amount) {
+
+        let ah = parseInt(a.replace(/#/g, ""), 16),
+            ar = ah >> 16,
+            ag = ah >> 8 & 0xff,
+            ab = ah & 0xff,
+            bh = parseInt(b.replace(/#/g, ""), 16),
+            br = bh >> 16,
+            bg = bh >> 8 & 0xff,
+            bb = bh & 0xff,
+            rr = ar + amount * (br - ar),
+            rg = ag + amount * (bg - ag),
+            rb = ab + amount * (bb - ab);
+
+        return "#" + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
+    }

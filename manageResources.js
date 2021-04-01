@@ -15,7 +15,7 @@ function manageResources(i) {
     switch(qwerty[i]) {
         case "A":
             resources.gold += 2;
-            resources.wood -= 1;
+            resources.food -= 1;
             resources.buildings -= 1;
             break;
         case "B":
@@ -31,8 +31,8 @@ function manageResources(i) {
             resources.wood -= 1;
             break;
         case "E":
-            resources.people += 1;
-            resources.food -= 1;
+            resources.people += 2;
+            resources.food -= 2;
             break;
         case "F":
             resources.ingredients += 1;
@@ -66,7 +66,7 @@ function manageResources(i) {
             resources.buildings -= 1;
             break;
         case "R":
-            resources.tools += 2;
+            resources.tools += 3;
             resources.people -= 1;
             resources.buildings -= 1;
             break;
@@ -77,8 +77,8 @@ function manageResources(i) {
             resources.gold -= 2;
             break;
         case "Y":
-            resources.wood += 1;
-            resources.stone += 1;
+            resources.wood += 2;
+            resources.stone += 2;
             resources.people -= 1;
             resources.buildings -= 1;
             break;
@@ -91,65 +91,65 @@ function getButtonStatus(i) {
 
     switch(qwerty[i]) {
         case "A":
-            if (resources.wood >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.food >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.wood < 1 || resources.buildings < 1 && status == "active") {
+            } else if (resources.food < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "B":
             if (resources.stone >= 1 && resources.tools >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.stone < 1 || resources.tools < 1 || resources.wood < 1 && status == "active") {
+            } else if (resources.stone < 1 || resources.tools < 1 || resources.wood < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "C":
             if (resources.ingredients >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.ingredients < 1 || resources.buildings < 1 || resources.wood < 1 && status == "active") {
+            } else if (resources.ingredients < 1 || resources.buildings < 1 || resources.wood < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "E":
             if (resources.food >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.food < 1 && status == "active") {
+            } else if (resources.food < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "F":
             if (resources.tools >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 && status == "active") {
+            } else if (resources.tools < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "G":
             if (resources.tools >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 && status == "active") {
+            } else if (resources.tools < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "H":
             if (resources.tools >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 && status == "active") {
+            } else if (resources.tools < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "K":
             if (resources.stone >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.stone < 1 && status == "active") {
+            } else if (resources.stone < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "L":
             if (resources.people >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.people < 1 || resources.buildings < 1 || resources.wood < 1 && status == "active") {
+            } else if (resources.people < 1 || resources.buildings < 1 || resources.wood < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -158,14 +158,14 @@ function getButtonStatus(i) {
         case "P":
             if (resources.tools >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 || resources.buildings < 1 && status == "active") {
+            } else if (resources.tools < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "R":
             if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.people < 1 || resources.buildings < 1 && status == "active") {
+            } else if (resources.people < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -174,14 +174,14 @@ function getButtonStatus(i) {
         case "X":
             if (resources.gold >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.gold < 1 && status == "active") {
+            } else if (resources.gold < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "Y":
             if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.people < 1 || resources.buildings < 1 && status == "active") {
+            } else if (resources.people < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
