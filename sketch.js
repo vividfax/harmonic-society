@@ -110,8 +110,9 @@ function playSound(i) {
 		players[i].start();
 		console.log(time);
 
-	// }, "1n").start(i%4);
-	}, "1n").start(random(0,4));
+	// }, "1n").start(i % 4);
+	// }, "1n").start(int(random(0, 4))/2);
+	}, "1n").start(random(0, 2));
 	Tone.Transport.start();
 }
 

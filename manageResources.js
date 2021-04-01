@@ -231,7 +231,7 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
-        case "U":
+        case "W":
             if (resources.herbs >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
             } else if (resources.herbs < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {

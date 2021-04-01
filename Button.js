@@ -38,7 +38,7 @@ class Button {
 
         if (this.letter == "X") {
             stroke("#FFD15A");
-            fill("#FFD15A");
+            fill(colors.light);
         } else {
             stroke(colors.light);
             fill(colors.light);
@@ -62,7 +62,7 @@ class Button {
         strokeWeight(this.strokeWeight);
 
         if (this.letter == "X") {
-            stroke("#FFD15A");
+            stroke("#FFDF8E");
             fill("#FFDF8E");
         } else {
             stroke(colors.medium);
