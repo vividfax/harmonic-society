@@ -90,7 +90,7 @@ function manageResources(i) {
             resources.people -= 1;
             break;
         case "T":
-            resources.wood += 2;
+            resources.wood += 1;
             break;
         case "U":
             resources.gold += 3;
