@@ -108,7 +108,7 @@ function playSound(i) {
 	loops[i] = new Tone.Loop((time) => {
 
 		players[i].start();
-		console.log(time);
+		// console.log(time);
 
 	// }, "1n").start(i % 4);
 	// }, "1n").start(int(random(0, 4))/2);
