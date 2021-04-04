@@ -4,37 +4,30 @@ let buttons = [];
 let players = [];
 let loops = [];
 
-let logo;
-
-function preload() {
-
-	logo = loadImage('logo.svg');
-}
-
 function setup() {
 
 	createCanvas(windowWidth, windowHeight);
-	background(colors.dark);
 	textFont("Nunito");
+	frameRate(24);
 
 	createButtons();
 	buttons[4].status = "inactive";
 	buttons[25].status = "inactive";
 
 	createSoundPlayer();
-	frameRate(24);
 }
 
 function draw() {
 
 	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 
-	image(logo, width - 50 - 66, 40, logo.width/3, logo.height/3);
-	fill(colors.light);
+	fill("#F0F9F8");
 	noStroke();
+	textAlign(RIGHT, TOP);
+	textSize(16);
+	text("B A S S   B U I L D E R", width - 40, 40)
 	textSize(12);
-	textAlign(RIGHT, CENTER);
-	text("A game by Rianna Suen\n and Struan Fraser", width - 50, 100)
+	text("A game by Rianna Suen\n and Struan Fraser", width - 40, 65)
 
 	// drawResources();
 
@@ -87,7 +80,7 @@ function createButtons() {
 	for (let i = 10; i < 19; i++) {
 buttons[i] = new Button(startPoint + (65+padding) * (i - 10) + padding/2, height/2 + padding + 65, qwerty[i]);
 	}
-	startPoint = width/2 - (65+padding) * 8 / 2 - 40;
+	startPoint = width/2 - (65+padding) * 8 / 2 - 20;
 	for (let i = 19; i < 26; i++) {
 buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height/2 + padding * 2 + 65 * 2, qwerty[i]);
 	}
