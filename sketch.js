@@ -21,17 +21,11 @@ function draw() {
 
 	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 
-	fill("#F0F9F8");
-	noStroke();
-	textAlign(RIGHT, TOP);
-	textSize(16);
-	text("B A S S   B U I L D E R", width - 40, 40)
-	textSize(12);
-	text("A game by Rianna Suen\n and Struan Fraser", width - 40, 65)
-
 	// drawResources();
 
 	if (resources.score != 0) {
+		fill(colors.light);
+		noStroke();
 		textSize(40);
 		textAlign(CENTER, CENTER);
 		let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
