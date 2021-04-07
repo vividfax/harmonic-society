@@ -4,6 +4,8 @@ let buttons = [];
 let players = [];
 let loops = [];
 
+let histories = [];
+
 function setup() {
 
 	createCanvas(windowWidth, windowHeight);
@@ -16,17 +18,27 @@ function setup() {
 
 	createSoundPlayer();
 
-	// background("#2E837B");
-	// drawNoise("#4D958F");
-	// drawNoise("#78AEAC");
+	background("#0C6F64");
+	drawNoise("#4D958F");
+	drawNoise("#93BDBE");
+
+	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
+		let arr = []
+		for (let j = 0; j < width; j++) {
+			arr.push(0);
+		}
+		histories.push(arr);
+	}
 }
 
 function draw() {
 
-	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
-	// updatePixels();
+	// strokeWeight(1);
+	// setGradient(0,0, width, height, "#A3C7C9", "#00685C");
+	updatePixels();
 
 	// drawResources();
+	drawWaves();
 
 	if (resources.score != 0) {
 
@@ -48,6 +60,32 @@ function draw() {
 			manageResources(i);
 		}
 		buttons[i].drawButton();
+	}
+}
+
+function drawWaves() {
+
+	strokeWeight(1);
+	fill("rgba(255, 255, 255, 0.1)");
+	stroke('rgba(255,255, 255, 0.5)');
+
+	for (let i = 0; i < histories.length - 1; i++) {
+
+		histories[i].push(resources[Object.keys(resources)[i]]);
+		let resource = histories[i];
+
+		beginShape();
+
+		for (let i = 0; i < resource.length; i+= 1) {
+			vertex(i, map(resource[i], 0, height*2, height, 0))
+		}
+		vertex(width, height);
+		vertex(0, height);
+		endShape();
+
+		if (resource.length > width) {
+			resource.splice(0,1);
+		}
 	}
 }
 
@@ -118,6 +156,7 @@ function stopSound(i) {
 
 function drawResources() {
 
+	strokeWeight(1);
 	fill(255);
 	textAlign(LEFT, CENTER);
 	textSize(12);
@@ -139,11 +178,13 @@ function drawNoise(a) {
 
 function setGradient(x, y, w, h, c1, c2) {
 
+	strokeWeight(1);
+
     for (let i = y; i <= y + h; i++) {
-      let inter = map(i, y, y + h, 0, 1);
-      let c = colorLerp(c1, c2, inter);
-      stroke(c);
-      line(x, i, x + w, i);
+		let inter = map(i, y, y + h, 0, 1);
+		let c = colorLerp(c1, c2, inter);
+		stroke(c);
+		line(x, i, x + w, i);
 	}
 }
 
