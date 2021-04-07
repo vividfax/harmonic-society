@@ -7,8 +7,12 @@ let resources = {
     herbs: 0,
     food: 0,
     people: 0,
-    gold: 0,
+    educated: 0,
+    books: 0,
+    energy: 0,
     machinery: 0,
+    computers: 0,
+    joy: 0,
     score: 0,
 };
 
@@ -16,9 +20,9 @@ function manageResources(i) {
 
     switch(qwerty[i]) {
         case "A":
-            resources.gold += 2;
-            resources.food -= 1;
-            resources.buildings -= 1;
+            resources.joy += 2;
+            resources.food -= 2;
+            resources.buildings -= 2;
             break;
         case "B":
             resources.buildings += 3;
@@ -33,9 +37,10 @@ function manageResources(i) {
             resources.wood -= 1;
             break;
         case "D":
-            resources.people += 2;
+            resources.people += 4;
             resources.herbs -= 1;
             resources.buildings -= 1;
+            resources.educated -= 1;
             break;
         case "E":
             resources.people += 2;
@@ -57,11 +62,17 @@ function manageResources(i) {
         case "I":
             resources.machinery += 3;
             resources.tools -= 1;
-            resources.people -= 1;
+            resources.educated -= 1;
+            resources.buildings -= 1;
+            break;
+        case "J":
+            resources.energy += 4;
+            resources.tools -= 1;
+            resources.educated -= 1;
             resources.buildings -= 1;
             break;
         case "K":
-            resources.tools += 1;
+            resources.tools += 2;
             resources.stone -= 1;
             break;
         case "L":
@@ -73,10 +84,18 @@ function manageResources(i) {
             resources.stone += 2;
             break;
         case "N":
-            resources.tools += 4;
+            resources.tools += 3;
+            resources.buildings += 2;
+            resources.educated -= 1;
+            resources.computers-= 1;
+            resources.energy -= 1;
+            break;
+        case "O":
+            resources.computers += 4;
             resources.machinery -= 1;
-            resources.people -= 1;
             resources.buildings -= 1;
+            resources.educated -= 1;
+            resources.energy -= 1;
             break;
         case "P":
             resources.herbs += 1;
@@ -84,35 +103,55 @@ function manageResources(i) {
             resources.tools -= 1;
             resources.buildings -= 1;
             break;
+        case "Q":
+            resources.computers += 2;
+            resources.machinery += 2;
+            resources.books -= 1;
+            resources.educated -= 1;
+            break;
         case "R":
             resources.tools += 1;
             resources.buildings += 1;
             resources.people -= 1;
             break;
+        case "S":
+            resources.joy += 3;
+            resources.computers -= 1;
+            resources.people -= 1;
+            resources.energy -= 1;
+            break;
         case "T":
-            resources.wood += 1;
+            resources.wood += 2;
             break;
         case "U":
-            resources.gold += 3;
-            resources.machinery -= 1;
-            resources.buildings -= 1;
-            resources.people -= 1;
+            resources.educated += 3;
+            resources.people -= 3;
+            break;
+        case "V":
+            resources.books += 2;
+            resources.educated -= 1;
             break;
         case "W":
-            resources.gold += 3;
+            resources.joy += 3;
             resources.herbs -= 1;
             resources.buildings -= 1;
             resources.people -= 1;
             break;
         case "X":
             resources.score += 1;
-            resources.gold -= 2;
+            resources.joy -= 2;
             break;
         case "Y":
             resources.wood += 2;
             resources.stone += 2;
             resources.people -= 1;
             resources.buildings -= 1;
+            break;
+        case "Z":
+            resources.educated += 3;
+            resources.joy += 1;
+            resources.people -= 1;
+            resources.books -= 1;
             break;
     }
 }
@@ -144,9 +183,9 @@ function getButtonStatus(i) {
             }
             break;
         case "D":
-            if (resources.herbs >= 1 && resources.buildings >= 1 && resources.wood >= 1 && status == "disabled") {
+            if (resources.herbs >= 1 && resources.buildings >= 1 && resources.educated >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.herbs < 1 || resources.buildings < 1 || resources.wood < 1 && status != "disabled") {
+            } else if (resources.herbs < 1 || resources.buildings < 1 || resources.educated < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -179,9 +218,16 @@ function getButtonStatus(i) {
             }
             break;
         case "I":
-            if (resources.tools >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.tools >= 1 && resources.educated >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.tools < 1 || resources.educated < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
+        case "J":
+            if (resources.tools >= 1 && resources.educated >= 1 && resources.buildings >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.tools < 1 || resources.educated < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -202,9 +248,16 @@ function getButtonStatus(i) {
         case "M":
             break;
         case "N":
-            if (resources.machinery >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.computers >= 1 && resources.educated >= 1 && resources.energy >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.machinery < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.computers < 1 || resources.educated < 1 || resources.energy < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
+        case "O":
+            if (resources.machinery >= 1 && resources.educated >= 1 && resources.buildings >= 1 && resources.energy >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.machinery < 1 || resources.educated < 1 || resources.buildings < 1 || resources.energy < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -215,6 +268,13 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "Q":
+            if (resources.books >= 1 && resources.educated >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.books < 1 || resources.educated < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
         case "R":
             if (resources.people >= 1 && status == "disabled") {
                 return "inactive";
@@ -222,12 +282,26 @@ function getButtonStatus(i) {
                 return "disabled";
             }
             break;
+        case "S":
+            if (resources.computers >= 1 && resources.people >= 1 && resources.energy >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.computers < 1 || resources.people < 1 || resources.energy < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
         case "T":
             break;
         case "U":
-            if (resources.machinery >= 1 && resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.people >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.machinery < 1 || resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.people < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
+        case "V":
+            if (resources.educated >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.educated < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -239,9 +313,9 @@ function getButtonStatus(i) {
             }
             break;
         case "X":
-            if (resources.gold >= 1 && status == "disabled") {
+            if (resources.joy >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.gold < 1 && status != "disabled") {
+            } else if (resources.joy < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -249,6 +323,13 @@ function getButtonStatus(i) {
             if (resources.people >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
             } else if (resources.people < 1 || resources.buildings < 1 && status != "disabled") {
+                return "disabled";
+            }
+            break;
+        case "Z":
+            if (resources.people >= 1 && resources.books >= 1 && status == "disabled") {
+                return "inactive";
+            } else if (resources.people < 1 || resources.books < 1 && status != "disabled") {
                 return "disabled";
             }
             break;

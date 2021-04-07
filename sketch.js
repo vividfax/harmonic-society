@@ -37,8 +37,8 @@ function draw() {
 	// setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 	updatePixels();
 
-	// drawResources();
 	drawWaves();
+	// drawResources();
 
 	if (resources.score != 0) {
 
@@ -67,20 +67,23 @@ function drawWaves() {
 
 	strokeWeight(1);
 	fill("rgba(255, 255, 255, 0.1)");
-	stroke('rgba(255,255, 255, 0.5)');
+	stroke("rgba(255,255, 255, 0.5)");
 
-	for (let i = 0; i < histories.length - 1; i++) {
+	for (let i = 0; i < histories.length; i++) {
 
 		histories[i].push(resources[Object.keys(resources)[i]]);
 		let resource = histories[i];
 
+		if(i == histories.length-1) {
+			stroke("#FFDF8E");
+		}
 		beginShape();
 
 		for (let i = 0; i < resource.length; i+= 1) {
-			vertex(i, map(resource[i], 0, height*2, height, 0))
+			vertex(i+1, map(resource[i], 0, height*2, height, 0)+1);
 		}
-		vertex(width, height);
-		vertex(0, height);
+		vertex(width+1, height+1);
+		vertex(0, height+1);
 		endShape();
 
 		if (resource.length > width) {
