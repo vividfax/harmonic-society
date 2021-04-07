@@ -15,15 +15,21 @@ function setup() {
 	buttons[25].status = "inactive";
 
 	createSoundPlayer();
+
+	// background("#2E837B");
+	// drawNoise("#4D958F");
+	// drawNoise("#78AEAC");
 }
 
 function draw() {
 
 	setGradient(0,0, width, height, "#A3C7C9", "#00685C");
+	// updatePixels();
 
 	// drawResources();
 
 	if (resources.score != 0) {
+
 		fill(colors.light);
 		noStroke();
 		textSize(40);
@@ -116,6 +122,19 @@ function drawResources() {
 	textAlign(LEFT, CENTER);
 	textSize(12);
 	text(JSON.stringify(resources), 50, 50);
+}
+
+function drawNoise(a) {
+
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+
+			if (y/height < random()) {
+				set(x, y, color(a));
+			}
+		}
+	}
+	updatePixels();
 }
 
 function setGradient(x, y, w, h, c1, c2) {

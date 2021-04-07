@@ -1,4 +1,4 @@
-let colors = {dark: "#00685C", medium: "#B6E4B5", light: "#fff"}
+let colors = {dark: "#00685C", medium: "#B6E4B5", light: "#fff"};
 
 class Button {
 
