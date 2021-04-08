@@ -20,9 +20,9 @@ function manageResources(i) {
 
     switch(qwerty[i]) {
         case "A":
-            resources.joy += 2;
-            resources.food -= 2;
-            resources.buildings -= 2;
+            resources.joy += 1;
+            resources.food -= 1;
+            resources.buildings -= 1;
             break;
         case "B":
             resources.buildings += 3;
@@ -76,16 +76,16 @@ function manageResources(i) {
             resources.stone -= 1;
             break;
         case "L":
-            resources.food += 2;
+            resources.food += 3;
             resources.buildings -= 1;
             resources.people -= 1;
             break;
         case "M":
-            resources.stone += 2;
+            resources.stone += 1;
             break;
         case "N":
             resources.tools += 3;
-            resources.buildings += 2;
+            resources.buildings += 3;
             resources.educated -= 1;
             resources.computers-= 1;
             resources.energy -= 1;
@@ -115,13 +115,13 @@ function manageResources(i) {
             resources.people -= 1;
             break;
         case "S":
-            resources.joy += 3;
+            resources.joy += 4;
             resources.computers -= 1;
             resources.people -= 1;
             resources.energy -= 1;
             break;
         case "T":
-            resources.wood += 2;
+            resources.wood += 1;
             break;
         case "U":
             resources.educated += 3;
@@ -148,8 +148,8 @@ function manageResources(i) {
             resources.buildings -= 1;
             break;
         case "Z":
-            resources.educated += 3;
-            resources.joy += 1;
+            resources.educated += 2;
+            resources.joy += 2;
             resources.people -= 1;
             resources.books -= 1;
             break;

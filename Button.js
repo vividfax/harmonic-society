@@ -29,8 +29,12 @@ class Button {
 
     drawActive() {
 
+        let x = 0, y = 0, size = 0;
+
         if (keyIsDown(this.letter.charCodeAt(0))) {
-            this.strokeWeight = 2;
+            size = -2;
+            x = 1;
+            y = 1;
         } else {
             this.strokeWeight = 4;
         }
@@ -43,7 +47,7 @@ class Button {
             stroke(colors.light);
             fill(colors.light);
         }
-        rect(this.x, this.y, this.size, this.size, this.borderRadius);
+        rect(this.x +x, this.y + y, this.size + size, this.size + size, this.borderRadius);
 
         fill(colors.dark);
         noStroke();
@@ -54,8 +58,12 @@ class Button {
 
     drawInactive() {
 
+        let x = 0, y = 0, size = 0;
+
         if (keyIsDown(this.letter.charCodeAt(0))) {
-            this.strokeWeight = 2;
+            size = -2;
+            x = 1;
+            y = 1;
         } else {
             this.strokeWeight = 4;
         }
@@ -68,7 +76,7 @@ class Button {
             stroke(colors.medium);
             fill(colors.medium);
         }
-        rect(this.x, this.y, this.size, this.size, this.borderRadius);
+        rect(this.x +x, this.y + y, this.size + size, this.size + size, this.borderRadius);
 
         fill(colors.dark);
         noStroke();

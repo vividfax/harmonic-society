@@ -18,9 +18,8 @@ function setup() {
 
 	createSoundPlayer();
 
-	background("#0C6F64");
-	drawNoise("#4D958F");
-	drawNoise("#93BDBE");
+	background("#388981");
+	drawNoise("#79AEAC");
 
 	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
 		let arr = []
@@ -74,20 +73,20 @@ function drawWaves() {
 		histories[i].push(resources[Object.keys(resources)[i]]);
 		let resource = histories[i];
 
-		if(i == histories.length-1) {
+		if(i == histories.length - 1) {
 			stroke("#FFDF8E");
 		}
 		beginShape();
 
-		for (let i = 0; i < resource.length; i+= 1) {
-			vertex(i+1, map(resource[i], 0, height*2, height, 0)+1);
+		for (let i = 0; i < resource.length; i += 1) {
+			vertex(i + 1, map(resource[i], 0, height * 5, height, 0) + 1);
 		}
-		vertex(width+1, height+1);
-		vertex(0, height+1);
+		vertex(width + 1, height + 1);
+		vertex(0, height + 1);
 		endShape();
 
 		if (resource.length > width) {
-			resource.splice(0,1);
+			resource.splice(0, 1);
 		}
 	}
 }
