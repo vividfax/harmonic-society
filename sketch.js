@@ -36,8 +36,6 @@ function setup() {
 
 function draw() {
 
-	// strokeWeight(1);
-	// setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 	updatePixels();
 
 	if (resources.score > 1000) {
@@ -194,7 +192,7 @@ function playSound(i) {
 
 		players[i].start();
 
-	}, repeats + "n").start("+8t");
+	}, repeats + "n").start("+0");
 	Tone.Transport.start();
 }
 
@@ -225,33 +223,4 @@ function drawNoise(a) {
 		}
 	}
 	updatePixels();
-}
-
-function setGradient(x, y, w, h, c1, c2) {
-
-	strokeWeight(1);
-
-    for (let i = y; i <= y + h; i++) {
-		let inter = map(i, y, y + h, 0, 1);
-		let c = colorLerp(c1, c2, inter);
-		stroke(c);
-		line(x, i, x + w, i);
-	}
-}
-
-function colorLerp(a, b, amount) {
-
-    let ah = parseInt(a.replace(/#/g, ""), 16),
-        ar = ah >> 16,
-        ag = ah >> 8 & 0xff,
-        ab = ah & 0xff,
-        bh = parseInt(b.replace(/#/g, ""), 16),
-        br = bh >> 16,
-        bg = bh >> 8 & 0xff,
-        bb = bh & 0xff,
-        rr = ar + amount * (br - ar),
-        rg = ag + amount * (bg - ag),
-        rb = ab + amount * (bb - ab);
-
-    return "#" + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
 }
