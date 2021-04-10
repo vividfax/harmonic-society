@@ -14,6 +14,8 @@ let loops4 = [];
 
 let histories = [];
 
+let sandboxMode = false;
+
 function setup() {
 
 	createCanvas(windowWidth, windowHeight);
@@ -45,6 +47,20 @@ function draw() {
 	// setGradient(0,0, width, height, "#A3C7C9", "#00685C");
 	updatePixels();
 
+	if (resources.score > 1000) {
+		drawSandboxButton();
+	}
+
+	if (sandboxMode) {
+
+		for (let i = 0; i < qwerty.length; i++) {
+			if (buttons[i].status == "disabled") {
+				buttons[i].status = "inactive";
+			}
+			buttons[i].drawButton();
+		}
+		return;
+	}
 	drawWaves();
 	// drawResources();
 
@@ -135,6 +151,35 @@ buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height
 	}
 }
 
+function drawSandboxButton() {
+
+	if (!sandboxMode) {
+		stroke("rgba(255, 255, 255, 0.5)");
+		strokeWeight(2);
+		noFill();
+		if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50) {
+			fill(colors.light);
+			noStroke();
+		}
+		rect(20, 20, 120, 30);
+	}
+	noStroke();
+	fill(255);
+
+	if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50 && !sandboxMode) {
+		fill(colors.dark);
+	}
+	textSize(14);
+	text("Sandbox Mode", 80, 37);
+}
+
+function mouseReleased() {
+
+	if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50 && resources.score > 1000) {
+		sandboxMode = true;
+	}
+}
+
 function createSoundPlayers() {
 
 	for (let i = 0; i < qwerty.length; i++) {
@@ -161,7 +206,7 @@ function playSounds(i) {
 	if (random(4) <= 1) {
 		repeats = int(random(2, 5));
 	}
-	if (i == 20) {
+	if (i == 20 && !sandboxMode) {
 		repeats = 1;
 	}
 	switch (repeats) {
