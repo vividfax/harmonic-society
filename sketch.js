@@ -2,15 +2,8 @@ let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "
 
 let buttons = [];
 
-let players1 = [];
-let players2 = [];
-let players3 = [];
-let players4 = [];
-
-let loops1 = [];
-let loops2 = [];
-let loops3 = [];
-let loops4 = [];
+let loops = [];
+let players = [];
 
 let histories = [];
 
@@ -27,7 +20,7 @@ function setup() {
 	buttons[25].status = "inactive";
 
 	createSoundPlayers();
-	Tone.Transport.bpm.value = 80;
+	Tone.Transport.bpm.value = 60;
 
 	background("#388981");
 	drawNoise("#79AEAC");
@@ -75,7 +68,7 @@ function draw() {
 	for (let i = 0; i < qwerty.length; i++) {
 
 		if (buttons[i].status != getButtonStatus(i) && getButtonStatus(i) == "disabled") {
-			stopSounds(i);
+			stopSound(i);
 		}
 		buttons[i].status = getButtonStatus(i);
 
@@ -123,10 +116,10 @@ function keyTyped() {
 
 			if (buttons[i].status == "inactive") {
 				buttons[i].status = "active";
-				playSounds(i);
+				playSound(i);
 			} else if (buttons[i].status == "active") {
 				buttons[i].status = "inactive";
-				stopSounds(i);
+				stopSound(i);
 			}
 		}
 	}
@@ -184,76 +177,31 @@ function createSoundPlayers() {
 
 	for (let i = 0; i < qwerty.length; i++) {
 
-		players1[i] = new Tone.Player({
-			url: "samples/" + qwerty[i] + ".wav",
-		}).toMaster();
-		players2[i] = new Tone.Player({
-			url: "samples/" + qwerty[i] + ".wav",
-		}).toMaster();
-		players3[i] = new Tone.Player({
-			url: "samples/" + qwerty[i] + ".wav",
-		}).toMaster();
-		players4[i] = new Tone.Player({
+		players[i] = new Tone.Player({
 			url: "samples/" + qwerty[i] + ".wav",
 		}).toMaster();
 	}
 }
 
-function playSounds(i) {
+function playSound(i) {
 
 	let repeats = 1;
 
-	if (random(4) <= 1) {
-		repeats = int(random(2, 5));
+	if (random() > 0.5 && i != 20) {
+		repeats = int(random(1, 5));
 	}
-	if (i == 20 && !sandboxMode) {
-		repeats = 1;
-	}
-	switch (repeats) {
-		case 1:
-			playSound(i, loops1, players1);
-			break;
-		case 2:
-			playSound(i, loops1, players1);
-			playSound(i, loops2, players2);
-			break;
-		case 3:
-			playSound(i, loops1, players1);
-			playSound(i, loops2, players2);
-			playSound(i, loops3, players3);
-			break;
-		case 4:
-			playSound(i, loops1, players1);
-			playSound(i, loops2, players2);
-			playSound(i, loops3, players3);
-			playSound(i, loops4, players4);
-			break;
-	}
-}
+	loops[i] = new Tone.Loop((time) => {
 
-function playSound(i, loop, player) {
+		players[i].start();
 
-	loop[i] = new Tone.Loop((time) => {
-
-		player[i].start();
-
-	}, "1n").start(random(0, 4));
+	}, repeats + "n").start(random(0, 4));
 	Tone.Transport.start();
 }
 
-function stopSounds(i) {
+function stopSound(i) {
 
-	if (loops1[i] != undefined) {
-		loops1[i].stop();
-	}
-	if (loops2[i] != undefined) {
-		loops2[i].stop();
-	}
-	if (loops3[i] != undefined) {
-		loops3[i].stop();
-	}
-	if (loops4[i] != undefined) {
-		loops4[i].stop();
+	if (loops[i] != undefined) {
+		loops[i].stop();
 	}
 }
 
