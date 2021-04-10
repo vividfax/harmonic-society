@@ -1,8 +1,16 @@
 let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
 
 let buttons = [];
-let players = [];
-let loops = [];
+
+let players1 = [];
+let players2 = [];
+let players3 = [];
+let players4 = [];
+
+let loops1 = [];
+let loops2 = [];
+let loops3 = [];
+let loops4 = [];
 
 let histories = [];
 
@@ -16,7 +24,8 @@ function setup() {
 	buttons[4].status = "inactive";
 	buttons[25].status = "inactive";
 
-	createSoundPlayer();
+	createSoundPlayers();
+	Tone.Transport.bpm.value = 80;
 
 	background("#388981");
 	drawNoise("#79AEAC");
@@ -51,7 +60,7 @@ function draw() {
 	for (let i = 0; i < qwerty.length; i++) {
 
 		if (buttons[i].status != getButtonStatus(i) && getButtonStatus(i) == "disabled") {
-			stopSound(i);
+			stopSounds(i);
 		}
 		buttons[i].status = getButtonStatus(i);
 
@@ -79,7 +88,7 @@ function drawWaves() {
 		beginShape();
 
 		for (let i = 0; i < resource.length; i += 1) {
-			vertex(i + 1, map(resource[i], 0, height * 5, height, 0) + 1);
+			vertex(i + 1, map(resource[i], 0, height * 4, height, 0) + 1);
 		}
 		vertex(width + 1, height + 1);
 		vertex(0, height + 1);
@@ -99,10 +108,10 @@ function keyTyped() {
 
 			if (buttons[i].status == "inactive") {
 				buttons[i].status = "active";
-				playSound(i);
+				playSounds(i);
 			} else if (buttons[i].status == "active") {
 				buttons[i].status = "inactive";
-				stopSound(i);
+				stopSounds(i);
 			}
 		}
 	}
@@ -126,33 +135,80 @@ buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height
 	}
 }
 
-function createSoundPlayer() {
+function createSoundPlayers() {
 
 	for (let i = 0; i < qwerty.length; i++) {
 
-		players[i] = new Tone.Player({
+		players1[i] = new Tone.Player({
+			url: "samples/" + qwerty[i] + ".wav",
+		}).toMaster();
+		players2[i] = new Tone.Player({
+			url: "samples/" + qwerty[i] + ".wav",
+		}).toMaster();
+		players3[i] = new Tone.Player({
+			url: "samples/" + qwerty[i] + ".wav",
+		}).toMaster();
+		players4[i] = new Tone.Player({
 			url: "samples/" + qwerty[i] + ".wav",
 		}).toMaster();
 	}
 }
 
-function playSound(i) {
+function playSounds(i) {
 
-	loops[i] = new Tone.Loop((time) => {
+	let repeats = 1;
 
-		players[i].start();
-		// console.log(time);
+	if (random(4) <= 1) {
+		repeats = int(random(2, 5));
+	}
+	if (i == 20) {
+		repeats = 1;
+	}
+	switch (repeats) {
+		case 1:
+			playSound(i, loops1, players1);
+			break;
+		case 2:
+			playSound(i, loops1, players1);
+			playSound(i, loops2, players2);
+			break;
+		case 3:
+			playSound(i, loops1, players1);
+			playSound(i, loops2, players2);
+			playSound(i, loops3, players3);
+			break;
+		case 4:
+			playSound(i, loops1, players1);
+			playSound(i, loops2, players2);
+			playSound(i, loops3, players3);
+			playSound(i, loops4, players4);
+			break;
+	}
+}
 
-	// }, "1n").start(i % 4);
-	// }, "1n").start(int(random(0, 4))/2);
-	}, "1n").start(random(0, 2));
+function playSound(i, loop, player) {
+
+	loop[i] = new Tone.Loop((time) => {
+
+		player[i].start();
+
+	}, "1n").start(random(0, 4));
 	Tone.Transport.start();
 }
 
-function stopSound(i) {
+function stopSounds(i) {
 
-	if (loops[i] != undefined) {
-		loops[i].stop();
+	if (loops1[i] != undefined) {
+		loops1[i].stop();
+	}
+	if (loops2[i] != undefined) {
+		loops2[i].stop();
+	}
+	if (loops3[i] != undefined) {
+		loops3[i].stop();
+	}
+	if (loops4[i] != undefined) {
+		loops4[i].stop();
 	}
 }
 

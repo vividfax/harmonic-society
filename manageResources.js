@@ -74,6 +74,7 @@ function manageResources(i) {
         case "K":
             resources.tools += 2;
             resources.stone -= 1;
+            resources.wood -= 1;
             break;
         case "L":
             resources.food += 3;
@@ -81,7 +82,7 @@ function manageResources(i) {
             resources.people -= 1;
             break;
         case "M":
-            resources.stone += 1;
+            resources.stone += 2;
             break;
         case "N":
             resources.tools += 3;
@@ -121,7 +122,7 @@ function manageResources(i) {
             resources.energy -= 1;
             break;
         case "T":
-            resources.wood += 1;
+            resources.wood += 2;
             break;
         case "U":
             resources.educated += 3;
@@ -232,9 +233,9 @@ function getButtonStatus(i) {
             }
             break;
         case "K":
-            if (resources.stone >= 1 && status == "disabled") {
+            if (resources.stone >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.stone < 1 && status != "disabled") {
+            } else if (resources.stone < 1 && resources.wood < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
