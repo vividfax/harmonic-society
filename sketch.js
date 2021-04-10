@@ -50,7 +50,6 @@ function draw() {
 	if (resources.score > 1000) {
 		drawSandboxButton();
 	}
-
 	if (sandboxMode) {
 
 		for (let i = 0; i < qwerty.length; i++) {
@@ -157,25 +156,26 @@ function drawSandboxButton() {
 		stroke("rgba(255, 255, 255, 0.5)");
 		strokeWeight(2);
 		noFill();
-		if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50) {
+
+		if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60) {
 			fill(colors.light);
 			noStroke();
 		}
-		rect(20, 20, 120, 30);
+		rect(20, 20, 140, 40);
 	}
 	noStroke();
 	fill(255);
 
-	if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50 && !sandboxMode) {
+	if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60 && !sandboxMode) {
 		fill(colors.dark);
 	}
 	textSize(14);
-	text("Sandbox Mode", 80, 37);
+	text("Sandbox Mode", 90, 42);
 }
 
 function mouseReleased() {
 
-	if (mouseX > 20 && mouseX < 140 && mouseY > 20 && mouseY < 50 && resources.score > 1000) {
+	if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60 && resources.score > 1000) {
 		sandboxMode = true;
 	}
 }
