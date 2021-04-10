@@ -194,7 +194,7 @@ function playSound(i) {
 
 		players[i].start();
 
-	}, repeats + "n").start(random(0, 4));
+	}, repeats + "n").start("+8t");
 	Tone.Transport.start();
 }
 
