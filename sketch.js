@@ -49,19 +49,14 @@ function draw() {
 			}
 			buttons[i].drawButton();
 		}
+		drawScore(colors.medium);
 		return;
 	}
 	drawWaves();
 	// drawResources();
 
 	if (resources.score != 0) {
-
-		fill(colors.light);
-		noStroke();
-		textSize(40);
-		textAlign(CENTER, CENTER);
-		let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-		text(score, width/2, height/4);
+		drawScore(colors.light);
 	}
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -104,6 +99,16 @@ function drawWaves() {
 			resource.splice(0, 1);
 		}
 	}
+}
+
+function drawScore(color) {
+
+	fill(color);
+	noStroke();
+	textSize(40);
+	textAlign(CENTER, CENTER);
+	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	text(score, width/2, height/4);
 }
 
 function keyTyped() {
@@ -192,7 +197,8 @@ function playSound(i) {
 
 		players[i].start();
 
-	}, repeats + "n").start("+0");
+	}, repeats + "n").start("+1i");
+
 	Tone.Transport.start();
 }
 
