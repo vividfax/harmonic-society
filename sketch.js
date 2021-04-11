@@ -38,6 +38,10 @@ function draw() {
 
 	updatePixels();
 
+	if (!sandboxMode) {
+		drawWaves();
+		// drawResources();
+	}
 	if (resources.score > 1000) {
 		drawSandboxButton();
 	}
@@ -52,9 +56,6 @@ function draw() {
 		drawScore(colors.medium);
 		return;
 	}
-	drawWaves();
-	// drawResources();
-
 	if (resources.score != 0) {
 		drawScore(colors.light);
 	}
@@ -89,7 +90,7 @@ function drawWaves() {
 		beginShape();
 
 		for (let i = 0; i < resource.length; i += 1) {
-			vertex(i + 1, map(resource[i], 0, height * 4, height, 0) + 1);
+			vertex(i + 1, map(resource[i], 0, height * 3, height, 0) + 1);
 		}
 		vertex(width + 1, height + 1);
 		vertex(0, height + 1);
@@ -149,21 +150,21 @@ buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height
 function drawSandboxButton() {
 
 	if (!sandboxMode) {
-		stroke("rgba(255, 255, 255, 0.5)");
+		stroke(colors.medium);
+		fill(colors.medium);
 		strokeWeight(2);
-		noFill();
 
 		if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60) {
+			stroke(colors.light);
 			fill(colors.light);
-			noStroke();
 		}
-		rect(20, 20, 140, 40);
+		rect(20, 20, 140, 40, 7);
 	}
 	noStroke();
-	fill(255);
+	fill(colors.dark);
 
-	if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60 && !sandboxMode) {
-		fill(colors.dark);
+	if (sandboxMode) {
+		fill(colors.light);
 	}
 	textSize(14);
 	text("Sandbox Mode", 90, 42);
