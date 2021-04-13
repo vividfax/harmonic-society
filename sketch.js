@@ -2,6 +2,8 @@ let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "
 
 let buttons = [];
 
+let resourcesText = [];
+
 let loops = [];
 let players = [];
 
@@ -18,6 +20,8 @@ function setup() {
 	createButtons();
 	buttons[4].status = "inactive";
 	buttons[25].status = "inactive";
+
+	createResourcesText();
 
 	createSoundPlayers();
 	Tone.Transport.bpm.value = 60;
@@ -58,6 +62,11 @@ function draw() {
 	}
 	if (resources.score != 0) {
 		drawScore(colors.light);
+
+	}
+	for (let i = 0; i < resourcesText.length; i++) {
+		resourcesText[i].update(resources[Object.keys(resources)[i]]);
+		resourcesText[i].display();
 	}
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -108,8 +117,15 @@ function drawScore(color) {
 	noStroke();
 	textSize(40);
 	textAlign(CENTER, CENTER);
-	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	text(score, width/2, height/4);
+}
+
+function createResourcesText() {
+
+	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
+		resourcesText[i] = new Resource(Object.keys(resources)[0], i);
+	}
 }
 
 function keyTyped() {
