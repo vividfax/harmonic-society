@@ -5,10 +5,15 @@ class Resource {
         this.index = index;
         this.value;
         this.toggle = false;
+        this.cache;
     }
 
     update(value) {
         this.value = value;
+    }
+
+    cacheValue(value) {
+        this.cache = value;
     }
 
     display() {
@@ -19,7 +24,11 @@ class Resource {
             this.value = 0;
         }
         if (this.toggle) {
-            fill(colors.light);
+            if (this.cache > this.value) {
+                fill("#FFCFCF");
+            } else {
+                fill(colors.light);
+            }
             noStroke();
             textSize(16);
             textAlign(RIGHT, TOP);

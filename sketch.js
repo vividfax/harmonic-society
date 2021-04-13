@@ -61,12 +61,12 @@ function draw() {
 		return;
 	}
 	if (resources.score != 0) {
-		drawScore(colors.light);
-
+		drawScore(resources.score);
 	}
 	for (let i = 0; i < resourcesText.length; i++) {
 		resourcesText[i].update(resources[Object.keys(resources)[i]]);
 		resourcesText[i].display();
+		resourcesText[i].cacheValue(resources[Object.keys(resources)[i]]);
 	}
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -94,7 +94,7 @@ function drawWaves() {
 		let resource = histories[i];
 
 		if(i == histories.length - 1) {
-			stroke("#FFDF8E");
+			stroke("#FFD15A");
 		}
 		beginShape();
 
@@ -111,13 +111,20 @@ function drawWaves() {
 	}
 }
 
-function drawScore(color) {
+function drawScore(score) {
 
-	fill(color);
 	noStroke();
+
+	if (score >= 5000) {
+		fill("#FFD15A");
+	} else if (score >= 1000) {
+		fill("#FFE8AD");
+	} else {
+		fill(colors.light);
+	}
 	textSize(40);
 	textAlign(CENTER, CENTER);
-	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	text(score, width/2, height/4);
 }
 
