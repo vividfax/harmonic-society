@@ -57,7 +57,7 @@ function draw() {
 			}
 			buttons[i].drawButton();
 		}
-		drawScore(colors.medium);
+		drawScore(-1);
 		return;
 	}
 	if (resources.score != 0) {
@@ -119,6 +119,8 @@ function drawScore(score) {
 		fill("#FFD15A");
 	} else if (score >= 1000) {
 		fill("#FFE8AD");
+	} else if (score == -1) {
+		fill(colors.medium);
 	} else {
 		fill(colors.light);
 	}
