@@ -30,10 +30,10 @@ class Resource {
                 fill(colors.light);
             }
             noStroke();
-            textSize(16);
+            textSize(14);
             textAlign(RIGHT, TOP);
-            let value = this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            text(value, width - 20,  20 + this.index * 20);
+            let value = Object.keys(resources)[this.index] + ": " + this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            text(value, width - 50,  50 + this.index * 20);
         }
     }
 }
