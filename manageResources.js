@@ -43,8 +43,8 @@ function manageResources(i) {
             resources.educated -= 1;
             break;
         case "E":
-            resources.people += 2;
-            resources.food -= 2;
+            resources.people += 3;
+            resources.food -= 3;
             break;
         case "F":
             resources.ingredients += 1;

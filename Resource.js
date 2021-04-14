@@ -25,7 +25,8 @@ class Resource {
         }
         if (this.toggle) {
             if (this.cache > this.value) {
-                fill("#FFCFCF");
+                textStyle(BOLD);
+                fill("#FFD6D6");
             } else {
                 fill(colors.light);
             }
@@ -34,6 +35,7 @@ class Resource {
             textAlign(RIGHT, TOP);
             let value = Object.keys(resources)[this.index] + ": " + this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             text(value, width - 50,  50 + this.index * 20);
+            textStyle(NORMAL);
         }
     }
 }

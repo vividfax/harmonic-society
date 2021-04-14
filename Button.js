@@ -2,7 +2,7 @@ let colors = {dark: "#00685C", medium: "#B6E4B5", light: "#fff"};
 
 class Button {
 
-    constructor(x, y, letter) {
+    constructor(x, y, letter, action) {
         this.x = x;
         this.y = y;
         this.letter = letter;
@@ -10,6 +10,7 @@ class Button {
         this.borderRadius = 7;
         this.strokeWeight = 4;
         this.status = "disabled";
+        this.action = action;
     }
 
     drawButton() {
@@ -54,6 +55,8 @@ class Button {
         textAlign(CENTER, CENTER);
         textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
+        textSize(8);
+        text(this.action, this.x + this.size/2, this.y + this.size/6*5);
     }
 
     drawInactive() {
@@ -83,6 +86,8 @@ class Button {
         textAlign(CENTER, CENTER);
         textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
+        textSize(8);
+        text(this.action, this.x + this.size/2, this.y + this.size/6*5);
     }
 
     drawDisabled() {

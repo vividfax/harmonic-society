@@ -1,4 +1,5 @@
 let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+let actions = ["innovate","brew","breed","repair","chop trees","recycle","teach","make machinery","compute","farm","trade","socialise","make medicine","fish","forage","hunt","make energy","make tools","raise cattle","read","luxuriate","cook","write","build","3d print","mine"];
 
 let buttons = [];
 
@@ -160,15 +161,15 @@ function createButtons() {
 
 	let startPoint = width/2 - (65+padding) * 10 / 2;
 	for (let i = 0; i < 10; i++) {
-		buttons[i] = new Button(startPoint + (65+padding) * i + padding/2, height/2, qwerty[i]);
+		buttons[i] = new Button(startPoint + (65+padding) * i + padding/2, height/2, qwerty[i], actions[i]);
 	}
 	startPoint = width/2 - (65+padding) * 9 / 2 - 20;
 	for (let i = 10; i < 19; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 10) + padding/2, height/2 + padding + 65, qwerty[i]);
+buttons[i] = new Button(startPoint + (65+padding) * (i - 10) + padding/2, height/2 + padding + 65, qwerty[i], actions[i]);
 	}
 	startPoint = width/2 - (65+padding) * 8 / 2 - 20;
 	for (let i = 19; i < 26; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height/2 + padding * 2 + 65 * 2, qwerty[i]);
+buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height/2 + padding * 2 + 65 * 2, qwerty[i], actions[i]);
 	}
 }
 
@@ -197,7 +198,7 @@ function drawSandboxButton() {
 
 function mouseReleased() {
 
-	if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60 && resources.score > 1000) {
+	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && resources.score > 1000) {
 		sandboxMode = true;
 	}
 }
