@@ -179,11 +179,11 @@ function drawSandboxButton() {
 		fill(colors.medium);
 		strokeWeight(2);
 
-		if (mouseX > 20 && mouseX < 160 && mouseY > 20 && mouseY < 60) {
+		if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90) {
 			stroke(colors.light);
 			fill(colors.light);
 		}
-		rect(20, 20, 140, 40, 7);
+		rect(50, 50, 140, 40, 7);
 	}
 	noStroke();
 	fill(colors.dark);
@@ -192,7 +192,7 @@ function drawSandboxButton() {
 		fill(colors.light);
 	}
 	textSize(14);
-	text("Sandbox Mode", 90, 42);
+	text("Sandbox Mode", 120, 72);
 }
 
 function mouseReleased() {
