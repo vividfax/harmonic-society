@@ -11,6 +11,7 @@ let players = [];
 let histories = [];
 
 let sandboxMode = false;
+let showButtons = true;
 
 function setup() {
 
@@ -41,33 +42,18 @@ function setup() {
 
 function draw() {
 
-	updatePixels();
-
 	if (!sandboxMode) {
-		drawWaves();
-		// drawResources();
+		update();
 	}
-	if (resources.score > 1000) {
-		drawSandboxButton();
-	}
-	if (sandboxMode) {
+	display();
+}
 
-		for (let i = 0; i < qwerty.length; i++) {
-			if (buttons[i].status == "disabled") {
-				buttons[i].status = "inactive";
-			}
-			buttons[i].drawButton();
-		}
-		drawScore(-1);
-		return;
-	}
-	if (resources.score != 0) {
-		drawScore(resources.score);
-	}
-	for (let i = 0; i < resourcesText.length; i++) {
-		resourcesText[i].update(resources[Object.keys(resources)[i]]);
-		resourcesText[i].display();
-		resourcesText[i].cacheValue(resources[Object.keys(resources)[i]]);
+function update() {
+
+	balanced = true;
+
+	if (buttons[20].status != "active") {
+		balanced = false;
 	}
 	for (let i = 0; i < qwerty.length; i++) {
 
@@ -79,15 +65,60 @@ function draw() {
 		if (buttons[i].status == "active") {
 			manageResources(i);
 		}
-		buttons[i].drawButton();
+	}
+	for (let i = 0; i < resourcesText.length; i++) {
+		resourcesText[i].update(resources[Object.keys(resources)[i]]);
+		resourcesText[i].cacheValue(resources[Object.keys(resources)[i]]);
+	}
+	if (buttons[20].status != "active") {
+		balanced = false;
+	}
+}
+
+function display() {
+
+	if (balanced && !sandboxMode) {
+		background("#FFDF8E")
+	} else {
+		updatePixels();
+	}
+	if (sandboxMode) {
+
+		for (let i = 0; i < qwerty.length; i++) {
+			if (buttons[i].status == "disabled") {
+				buttons[i].status = "inactive";
+			}
+			buttons[i].drawButton();
+		}
+		drawSandboxButton();
+		drawScore();
+		return;
+	}
+	drawWaves();
+
+	if (showButtons) {
+		for (let i = 0; i < qwerty.length; i++) {
+			buttons[i].drawButton();
+		}
+	}
+	if (resources.score > 1000) {
+		drawSandboxButton();
+	}
+	drawTextBox();
+
+	for (let i = 0; i < resourcesText.length; i++) {
+		resourcesText[i].display();
+	}
+	if (resources.score != 0) {
+		drawScore();
 	}
 }
 
 function drawWaves() {
 
 	strokeWeight(1);
-	fill("rgba(255, 255, 255, 0.1)");
-	stroke("rgba(255,255, 255, 0.5)");
+	fill(255, 255/10);
+	stroke(255, 255/2);
 
 	for (let i = 0; i < histories.length; i++) {
 
@@ -112,22 +143,26 @@ function drawWaves() {
 	}
 }
 
-function drawScore(score) {
+function drawScore() {
 
 	noStroke();
-
-	if (score >= 5000) {
-		fill("#FFD15A");
-	} else if (score >= 1000) {
-		fill("#FFE8AD");
-	} else if (score == -1) {
-		fill(colors.medium);
-	} else {
-		fill(colors.light);
-	}
 	textSize(40);
+	fill(colors.light);
 	textAlign(CENTER, CENTER);
-	score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+	if (sandboxMode) {
+		fill(colors.medium);
+	} else if (balanced) {
+		fill("#388981");
+		textSize(30);
+		text("Balance achieved!", width/2, height/4 + 60);
+		textSize(60);
+	} else if (resources.score >= 5000) {
+		fill("#FFD15A");
+	} else if (resources.score >= 1000) {
+		fill("#FFE8AD");
+	}
+	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	text(score, width/2, height/4);
 }
 
@@ -135,6 +170,23 @@ function createResourcesText() {
 
 	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
 		resourcesText[i] = new Resource(Object.keys(resources)[0], i);
+	}
+}
+
+function drawTextBox() {
+
+	let toggle = false;
+
+	for (let i = 0; i < resourcesText.length; i++) {
+		if (resourcesText[i].toggle == true) {
+			toggle = true;
+			break;
+		}
+	}
+	if (!balanced && toggle) {
+		fill(121, 174, 172, 200);
+		noStroke();
+		rect(width - 190, 20, 170, 330);
 	}
 }
 
@@ -234,15 +286,6 @@ function stopSound(i) {
 	if (loops[i] != undefined) {
 		loops[i].stop();
 	}
-}
-
-function drawResources() {
-
-	strokeWeight(1);
-	fill(255);
-	textAlign(LEFT, CENTER);
-	textSize(12);
-	text(JSON.stringify(resources), 50, 50);
 }
 
 function drawNoise(a) {

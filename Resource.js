@@ -1,3 +1,5 @@
+let balanced = false;
+
 class Resource {
 
     constructor(type, index) {
@@ -6,10 +8,18 @@ class Resource {
         this.value;
         this.toggle = false;
         this.cache;
+        this.red = false;
     }
 
     update(value) {
         this.value = value;
+
+        if (this.value < this.cache) {
+            balanced = false;
+            this.red = true;
+        } else {
+            this.red = false;
+        }
     }
 
     cacheValue(value) {
@@ -24,7 +34,9 @@ class Resource {
             this.value = 0;
         }
         if (this.toggle) {
-            if (this.cache > this.value) {
+            if (balanced) {
+                fill("#388981");
+            } else if (this.red) {
                 textStyle(BOLD);
                 fill("#FFD6D6");
             } else {
