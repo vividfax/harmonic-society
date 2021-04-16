@@ -7,7 +7,7 @@ let resources = {
     herbs: 0,
     food: 0,
     people: 0,
-    educated: 0,
+    knowledge: 0,
     books: 0,
     energy: 0,
     machinery: 0,
@@ -40,7 +40,7 @@ function manageResources(i) {
             resources.people += 4;
             resources.herbs -= 1;
             resources.buildings -= 1;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             break;
         case "E":
             resources.people += 3;
@@ -62,13 +62,13 @@ function manageResources(i) {
         case "I":
             resources.machinery += 3;
             resources.tools -= 1;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             resources.buildings -= 1;
             break;
         case "J":
             resources.energy += 4;
             resources.tools -= 1;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             resources.buildings -= 1;
             break;
         case "K":
@@ -87,7 +87,7 @@ function manageResources(i) {
         case "N":
             resources.tools += 3;
             resources.buildings += 3;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             resources.computers-= 1;
             resources.energy -= 1;
             break;
@@ -95,7 +95,7 @@ function manageResources(i) {
             resources.computers += 4;
             resources.machinery -= 1;
             resources.buildings -= 1;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             resources.energy -= 1;
             break;
         case "P":
@@ -108,7 +108,7 @@ function manageResources(i) {
             resources.computers += 2;
             resources.machinery += 2;
             resources.books -= 1;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             break;
         case "R":
             resources.tools += 1;
@@ -125,12 +125,12 @@ function manageResources(i) {
             resources.wood += 2;
             break;
         case "U":
-            resources.educated += 3;
+            resources.knowledge += 3;
             resources.people -= 3;
             break;
         case "V":
             resources.books += 2;
-            resources.educated -= 1;
+            resources.knowledge -= 1;
             break;
         case "W":
             resources.joy += 3;
@@ -149,7 +149,7 @@ function manageResources(i) {
             resources.buildings -= 1;
             break;
         case "Z":
-            resources.educated += 2;
+            resources.knowledge += 2;
             resources.joy += 2;
             resources.people -= 1;
             resources.books -= 1;
@@ -184,9 +184,9 @@ function getButtonStatus(i) {
             }
             break;
         case "D":
-            if (resources.herbs >= 1 && resources.buildings >= 1 && resources.educated >= 1 && status == "disabled") {
+            if (resources.herbs >= 1 && resources.buildings >= 1 && resources.knowledge >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.herbs < 1 || resources.buildings < 1 || resources.educated < 1 && status != "disabled") {
+            } else if (resources.herbs < 1 || resources.buildings < 1 || resources.knowledge < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -219,16 +219,16 @@ function getButtonStatus(i) {
             }
             break;
         case "I":
-            if (resources.tools >= 1 && resources.educated >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.tools >= 1 && resources.knowledge >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 || resources.educated < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.tools < 1 || resources.knowledge < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "J":
-            if (resources.tools >= 1 && resources.educated >= 1 && resources.buildings >= 1 && status == "disabled") {
+            if (resources.tools >= 1 && resources.knowledge >= 1 && resources.buildings >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.tools < 1 || resources.educated < 1 || resources.buildings < 1 && status != "disabled") {
+            } else if (resources.tools < 1 || resources.knowledge < 1 || resources.buildings < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -249,16 +249,16 @@ function getButtonStatus(i) {
         case "M":
             break;
         case "N":
-            if (resources.computers >= 1 && resources.educated >= 1 && resources.energy >= 1 && status == "disabled") {
+            if (resources.computers >= 1 && resources.knowledge >= 1 && resources.energy >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.computers < 1 || resources.educated < 1 || resources.energy < 1 && status != "disabled") {
+            } else if (resources.computers < 1 || resources.knowledge < 1 || resources.energy < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
         case "O":
-            if (resources.machinery >= 1 && resources.educated >= 1 && resources.buildings >= 1 && resources.energy >= 1 && status == "disabled") {
+            if (resources.machinery >= 1 && resources.knowledge >= 1 && resources.buildings >= 1 && resources.energy >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.machinery < 1 || resources.educated < 1 || resources.buildings < 1 || resources.energy < 1 && status != "disabled") {
+            } else if (resources.machinery < 1 || resources.knowledge < 1 || resources.buildings < 1 || resources.energy < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -270,9 +270,9 @@ function getButtonStatus(i) {
             }
             break;
         case "Q":
-            if (resources.books >= 1 && resources.educated >= 1 && status == "disabled") {
+            if (resources.books >= 1 && resources.knowledge >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.books < 1 || resources.educated < 1 && status != "disabled") {
+            } else if (resources.books < 1 || resources.knowledge < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
@@ -300,9 +300,9 @@ function getButtonStatus(i) {
             }
             break;
         case "V":
-            if (resources.educated >= 1 && status == "disabled") {
+            if (resources.knowledge >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.educated < 1 && status != "disabled") {
+            } else if (resources.knowledge < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
