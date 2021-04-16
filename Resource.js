@@ -35,18 +35,22 @@ class Resource {
         }
         if (this.toggle) {
             if (balanced) {
+                textStyle(BOLD);
                 fill("#388981");
             } else if (this.red) {
                 textStyle(BOLD);
                 fill("#FFD6D6");
             } else {
-                fill(colors.light);
+                textStyle(BOLD);
+                fill("#fff");
+                stroke(colors.dark);
+                strokeWeight(2);
             }
-            noStroke();
+            // noStroke();
             textSize(14);
             textAlign(RIGHT, TOP);
             let value = Object.keys(resources)[this.index] + ": " + this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            text(value, width - 50,  50 + this.index * 20);
+            text(value, width - 50,  50 + this.index * 25);
             textStyle(NORMAL);
         }
     }

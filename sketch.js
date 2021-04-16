@@ -104,8 +104,6 @@ function display() {
 	if (resources.score > 1000) {
 		drawSandboxButton();
 	}
-	drawTextBox();
-
 	for (let i = 0; i < resourcesText.length; i++) {
 		resourcesText[i].display();
 	}
@@ -170,23 +168,6 @@ function createResourcesText() {
 
 	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
 		resourcesText[i] = new Resource(Object.keys(resources)[0], i);
-	}
-}
-
-function drawTextBox() {
-
-	let toggle = false;
-
-	for (let i = 0; i < resourcesText.length; i++) {
-		if (resourcesText[i].toggle == true) {
-			toggle = true;
-			break;
-		}
-	}
-	if (!balanced && toggle) {
-		fill(121, 174, 172, 200);
-		noStroke();
-		rect(width - 190, 20, 170, 330);
 	}
 }
 
