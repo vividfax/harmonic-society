@@ -1,6 +1,6 @@
 let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
 
-let percussive = ["A", "H", "K", "M", "T", "W"];
+let percussive = ["H", "K", "M", "N", "T", "W"];
 
 let actions = ["innovate", "brew", "procreate", "repair", "chop trees", "recycle", "teach", "make machinery", "compute", "farm", "trade", "socialise", "make medicine", "fish", "forage", "hunt", "make energy", "make tools", "raise cattle", "read", "luxuriate", "cook", "write", "build", "3d print", "mine"];
 
