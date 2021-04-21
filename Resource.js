@@ -39,10 +39,12 @@ class Resource {
                 fill("#388981");
             } else if (this.red) {
                 textStyle(BOLD);
-                fill("#FFD6D6");
+                fill("#FFA8A8");
+                stroke(colors.dark);
+                strokeWeight(2);
             } else {
                 textStyle(BOLD);
-                fill("#fff");
+                fill("#FFFFFF");
                 stroke(colors.dark);
                 strokeWeight(2);
             }

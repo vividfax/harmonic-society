@@ -211,31 +211,38 @@ buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height
 
 function drawSandboxButton() {
 
-	if (!sandboxMode) {
-		stroke(colors.medium);
-		fill(colors.medium);
-		strokeWeight(2);
+	let label;
 
-		if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90) {
-			stroke(colors.light);
-			fill(colors.light);
-		}
-		rect(50, 50, 140, 40, 7);
+	if (!sandboxMode) {
+		label = "Sandbox Mode";
+	} else {
+		label = "Return to Game";
 	}
+	stroke(colors.medium);
+	fill(colors.medium);
+	strokeWeight(2);
+
+	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90) {
+		stroke(colors.light);
+		fill(colors.light);
+	}
+	rect(50, 50, 140, 40, 7);
+
 	noStroke();
 	fill(colors.dark);
 
-	if (sandboxMode) {
-		fill(colors.light);
-	}
 	textSize(14);
-	text("Sandbox Mode", 120, 72);
+	text(label, 120, 72);
 }
 
 function mouseReleased() {
 
 	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && resources.score > 1000) {
-		sandboxMode = true;
+		if (!sandboxMode) {
+			sandboxMode = true;
+		} else {
+			sandboxMode = false;
+		}
 	}
 }
 

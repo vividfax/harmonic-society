@@ -235,7 +235,7 @@ function getButtonStatus(i) {
         case "K":
             if (resources.stone >= 1 && resources.wood >= 1 && status == "disabled") {
                 return "inactive";
-            } else if (resources.stone < 1 && resources.wood < 1 && status != "disabled") {
+            } else if (resources.stone < 1 || resources.wood < 1 && status != "disabled") {
                 return "disabled";
             }
             break;
