@@ -2,7 +2,7 @@ let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "
 
 let percussive = ["H", "K", "M", "N", "T", "W"];
 
-let actions = ["innovate", "brew", "procreate", "repair", "chop trees", "recycle", "teach", "make machinery", "compute", "farm", "trade", "socialise", "make medicine", "fish", "forage", "hunt", "make energy", "make tools", "raise cattle", "read", "luxuriate", "cook", "write", "build", "3d print", "mine"];
+let actions = ["innovate", "brew", "procreate", "repair", "chop trees", "recycle", "teach", "make\nmachinery", "compute", "farm", "trade", "socialise", "make\nmedicine", "fish", "forage", "hunt", "make energy", "make tools", "raise cattle", "read", "luxuriate", "cook", "write", "build", "3d print", "mine"];
 
 let buttons = [];
 
@@ -41,14 +41,17 @@ function setup() {
 		}
 		histories.push(arr);
 	}
+	setInterval(drawLoop, 1000/24);
 }
 
-function draw() {
+function drawLoop() {
 
 	if (!sandboxMode) {
 		update();
 	}
-	display();
+	if (!document.hidden) {
+		display();
+	}
 }
 
 function update() {
@@ -75,6 +78,14 @@ function update() {
 	}
 	if (buttons[20].status != "active") {
 		balanced = false;
+	}
+	for (let i = 0; i < histories.length; i++) {
+		histories[i].push(resources[Object.keys(resources)[i]]);
+		let resource = histories[i];
+
+		if (resource.length > width) {
+			resource.splice(0, 1);
+		}
 	}
 }
 
@@ -123,7 +134,6 @@ function drawWaves() {
 
 	for (let i = 0; i < histories.length; i++) {
 
-		histories[i].push(resources[Object.keys(resources)[i]]);
 		let resource = histories[i];
 
 		if(i == histories.length - 1) {
@@ -137,10 +147,6 @@ function drawWaves() {
 		vertex(width + 1, height + 1);
 		vertex(0, height + 1);
 		endShape();
-
-		if (resource.length > width) {
-			resource.splice(0, 1);
-		}
 	}
 }
 

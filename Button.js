@@ -55,7 +55,8 @@ class Button {
         textAlign(CENTER, CENTER);
         textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
-        textSize(8);
+        textSize(10);
+        textLeading(10);
         text(this.action, this.x + this.size/2, this.y + this.size/6*5);
     }
 
@@ -86,7 +87,8 @@ class Button {
         textAlign(CENTER, CENTER);
         textSize(23);
         text(this.letter, this.x + this.size/2, this.y + this.size/2 + 2);
-        textSize(8);
+        textSize(10);
+        textLeading(10);
         text(this.action, this.x + this.size/2, this.y + this.size/6*5);
     }
 
