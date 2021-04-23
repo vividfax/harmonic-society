@@ -268,8 +268,6 @@ function playSound(i) {
 
 	if (percussive.indexOf(qwerty[i]) > -1) {
 		repeats = random([1, 2, 4]);
-	} else if (random() > 0.75 && i != 20) {
-		repeats = random([1, 2]);
 	}
 	loops[i] = new Tone.Loop((time) => {
 
