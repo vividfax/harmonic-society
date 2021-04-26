@@ -115,7 +115,7 @@ function display() {
 			buttons[i].drawButton();
 		}
 	}
-	if (resources.score > 1000) {
+	if (resources.score > 1000 || balanced) {
 		drawSandboxButton();
 	}
 	for (let i = 0; i < resourcesText.length; i++) {
@@ -243,7 +243,7 @@ function drawSandboxButton() {
 
 function mouseReleased() {
 
-	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && resources.score > 1000) {
+	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && (resources.score > 1000 || balanced)) {
 		if (!sandboxMode) {
 			sandboxMode = true;
 		} else {
