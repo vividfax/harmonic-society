@@ -1,8 +1,62 @@
-let qwerty = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+let qwerty = [
+	"Q",
+	"W",
+	"E",
+	"R",
+	"T",
+	"Y",
+	"U",
+	"I",
+	"O",
+	"P",
+	"A",
+	"S",
+	"D",
+	"F",
+	"G",
+	"H",
+	"J",
+	"K",
+	"L",
+	"Z",
+	"X",
+	"C",
+	"V",
+	"B",
+	"N",
+	"M",
+];
 
 let percussive = ["H", "K", "M", "N", "T", "W"];
 
-let actions = ["innovate", "brew", "procreate", "repair", "chop trees", "recycle", "teach", "make\nmachinery", "compute", "farm", "trade", "socialise", "make\nmedicine", "fish", "forage", "hunt", "make energy", "make tools", "raise cattle", "read", "luxuriate", "cook", "write", "build", "3d print", "mine"];
+let actions = [
+	"innovate",
+	"brew",
+	"procreate",
+	"repair",
+	"chop trees",
+	"recycle",
+	"teach",
+	"make\nmachinery",
+	"compute",
+	"farm",
+	"trade",
+	"socialise",
+	"make\nmedicine",
+	"fish",
+	"forage",
+	"hunt",
+	"make energy",
+	"make tools",
+	"raise cattle",
+	"read",
+	"luxuriate",
+	"cook",
+	"write",
+	"build",
+	"3d print",
+	"mine",
+];
 
 let buttons = [];
 
@@ -17,7 +71,6 @@ let sandboxMode = false;
 let showButtons = true;
 
 function setup() {
-
 	createCanvas(windowWidth, windowHeight);
 	textFont("Nunito");
 	frameRate(24);
@@ -35,17 +88,16 @@ function setup() {
 	drawNoise("#79AEAC");
 
 	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
-		let arr = []
+		let arr = [];
 		for (let j = 0; j < width; j++) {
 			arr.push(0);
 		}
 		histories.push(arr);
 	}
-	setInterval(drawLoop, 1000/24);
+	setInterval(drawLoop, 1000 / 24);
 }
 
 function drawLoop() {
-
 	if (!sandboxMode) {
 		update();
 	}
@@ -55,15 +107,16 @@ function drawLoop() {
 }
 
 function update() {
-
 	balanced = true;
 
 	if (buttons[20].status != "active") {
 		balanced = false;
 	}
 	for (let i = 0; i < qwerty.length; i++) {
-
-		if (buttons[i].status != getButtonStatus(i) && getButtonStatus(i) == "disabled") {
+		if (
+			buttons[i].status != getButtonStatus(i) &&
+			getButtonStatus(i) == "disabled"
+		) {
 			stopSound(i);
 		}
 		buttons[i].status = getButtonStatus(i);
@@ -90,14 +143,12 @@ function update() {
 }
 
 function display() {
-
 	if (balanced && !sandboxMode) {
-		background("#FFDF8E")
+		background("#FFDF8E");
 	} else {
 		updatePixels();
 	}
 	if (sandboxMode) {
-
 		for (let i = 0; i < qwerty.length; i++) {
 			if (buttons[i].status == "disabled") {
 				buttons[i].status = "inactive";
@@ -127,16 +178,14 @@ function display() {
 }
 
 function drawWaves() {
-
 	strokeWeight(1);
-	fill(255, 255/10);
-	stroke(255, 255/2);
+	fill(255, 255 / 10);
+	stroke(255, 255 / 2);
 
 	for (let i = 0; i < histories.length; i++) {
-
 		let resource = histories[i];
 
-		if(i == histories.length - 1) {
+		if (i == histories.length - 1) {
 			stroke("#FFD15A");
 		}
 		beginShape();
@@ -151,7 +200,6 @@ function drawWaves() {
 }
 
 function drawScore() {
-
 	noStroke();
 	textSize(40);
 	fill(colors.light);
@@ -162,7 +210,7 @@ function drawScore() {
 	} else if (balanced) {
 		fill("#388981");
 		textSize(30);
-		text("Balance achieved!", width/2, height/4 + 60);
+		text("Balance achieved!", width / 2, height / 4 + 60);
 		textSize(60);
 	} else if (resources.score >= 5000) {
 		fill("#FFD15A");
@@ -170,22 +218,18 @@ function drawScore() {
 		fill("#FFE8AD");
 	}
 	let score = resources.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	text(score, width/2, height/4);
+	text(score, width / 2, height / 4);
 }
 
 function createResourcesText() {
-
 	for (let i = 0; i < Object.keys(resources).length - 1; i++) {
 		resourcesText[i] = new Resource(Object.keys(resources)[0], i);
 	}
 }
 
 function keyTyped() {
-
 	for (let i = 0; i < qwerty.length; i++) {
-
 		if (key.toUpperCase() == qwerty[i]) {
-
 			if (buttons[i].status == "inactive") {
 				buttons[i].status = "active";
 				playSound(i);
@@ -198,25 +242,39 @@ function keyTyped() {
 }
 
 function createButtons() {
-
 	let padding = 13;
 
-	let startPoint = width/2 - (65+padding) * 10 / 2;
+	let startPoint = width / 2 - ((65 + padding) * 10) / 2;
 	for (let i = 0; i < 10; i++) {
-		buttons[i] = new Button(startPoint + (65+padding) * i + padding/2, height/2, qwerty[i], actions[i]);
+		buttons[i] = new Button(
+			startPoint + (65 + padding) * i + padding / 2,
+			height / 2,
+			qwerty[i],
+			actions[i]
+		);
 	}
-	startPoint = width/2 - (65+padding) * 9 / 2 - 20;
+	startPoint = width / 2 - ((65 + padding) * 9) / 2 - 20;
 	for (let i = 10; i < 19; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 10) + padding/2, height/2 + padding + 65, qwerty[i], actions[i]);
+		buttons[i] = new Button(
+			startPoint + (65 + padding) * (i - 10) + padding / 2,
+			height / 2 + padding + 65,
+			qwerty[i],
+			actions[i]
+		);
 	}
-	startPoint = width/2 - (65+padding) * 8 / 2 - 20;
+	startPoint = width / 2 - ((65 + padding) * 8) / 2 - 20;
 	for (let i = 19; i < 26; i++) {
-buttons[i] = new Button(startPoint + (65+padding) * (i - 19) + padding/2, height/2 + padding * 2 + 65 * 2, qwerty[i], actions[i]);
+		buttons[i] = new Button(
+			startPoint + (65 + padding) * (i - 19) + padding / 2,
+			height / 2 + padding * 2 + 65 * 2,
+			qwerty[i],
+			actions[i]
+		);
+		// remember this
 	}
 }
 
 function drawSandboxButton() {
-
 	let label;
 
 	if (!sandboxMode) {
@@ -242,7 +300,27 @@ function drawSandboxButton() {
 }
 
 function mouseReleased() {
-
+	// Cursor input
+	console.log("---------");
+	console.log(buttons);
+	console.log(mouseX, " + ", mouseY);
+	for (let j = 0; j < buttons.length; j++) {
+		if (
+			mouseX > buttons[j].x &&
+			mouseX < buttons[j].x+61 &&
+			mouseY > buttons[j].y &&
+			mouseY < buttons[j].y+61
+		) {
+			console.log("pressed booton");
+			if (buttons[j].status == "inactive") {
+				buttons[j].status = "active";
+				playSound(j);
+			} else if (buttons[j].status == "active") {
+				buttons[j].status = "inactive";
+				stopSound(j);
+			}
+		}
+	}
 	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && (resources.score > 1000 || balanced)) {
 		if (!sandboxMode) {
 			sandboxMode = true;
@@ -253,9 +331,7 @@ function mouseReleased() {
 }
 
 function createSoundPlayers() {
-
 	for (let i = 0; i < qwerty.length; i++) {
-
 		players[i] = new Tone.Player({
 			url: "samples/" + qwerty[i] + ".wav",
 		}).toMaster();
@@ -263,34 +339,28 @@ function createSoundPlayers() {
 }
 
 function playSound(i) {
-
 	let repeats = 1;
 
 	if (percussive.indexOf(qwerty[i]) > -1) {
 		repeats = random([1, 2, 4]);
 	}
 	loops[i] = new Tone.Loop((time) => {
-
 		players[i].start();
-
 	}, repeats + "n").start("+1i");
 
 	Tone.Transport.start();
 }
 
 function stopSound(i) {
-
 	if (loops[i] != undefined) {
 		loops[i].stop();
 	}
 }
 
 function drawNoise(a) {
-
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
-
-			if (y/height < random()) {
+			if (y / height < random()) {
 				set(x, y, color(a));
 			}
 		}
