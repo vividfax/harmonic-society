@@ -300,10 +300,14 @@ function drawSandboxButton() {
 }
 
 function mouseReleased() {
+	isButtonPressed();
+}
+function touchEnded() {
+	isButtonPressed();
+}
+
+function isButtonPressed() {
 	// Cursor input
-	console.log("---------");
-	console.log(buttons);
-	console.log(mouseX, " + ", mouseY);
 	for (let j = 0; j < buttons.length; j++) {
 		if (
 			mouseX > buttons[j].x &&
@@ -329,7 +333,6 @@ function mouseReleased() {
 		}
 	}
 }
-
 function createSoundPlayers() {
 	for (let i = 0; i < qwerty.length; i++) {
 		players[i] = new Tone.Player({
