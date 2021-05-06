@@ -49,10 +49,12 @@ class Resource {
                 strokeWeight(2);
             }
             // noStroke();
-            textSize(14);
+            textSize(windowHeight/703 * 14);
+            let leading = windowHeight/703 * 25;
+
             textAlign(RIGHT, TOP);
             let value = Object.keys(resources)[this.index] + ": " + this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            text(value, width - 50,  50 + this.index * 25);
+            text(value, width - 50,  50 + this.index * leading);
             textStyle(NORMAL);
         }
     }
