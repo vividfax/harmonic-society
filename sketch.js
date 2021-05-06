@@ -300,13 +300,15 @@ function drawSandboxButton() {
 }
 
 function mouseReleased() {
-	isButtonPressed();
+	sandboxAvailable();
+	buttonTouched();
+}
+function touchStarted() {
 }
 function touchEnded() {
-	isButtonPressed();
 }
 
-function isButtonPressed() {
+function buttonTouched() {
 	// Cursor input
 	for (let j = 0; j < buttons.length; j++) {
 		if (
@@ -315,7 +317,6 @@ function isButtonPressed() {
 			mouseY > buttons[j].y &&
 			mouseY < buttons[j].y+61
 		) {
-			console.log("pressed booton");
 			if (buttons[j].status == "inactive") {
 				buttons[j].status = "active";
 				playSound(j);
@@ -325,6 +326,9 @@ function isButtonPressed() {
 			}
 		}
 	}
+}
+
+function sandboxAvailable() {
 	if (mouseX > 50 && mouseX < 190 && mouseY > 50 && mouseY < 90 && (resources.score > 1000 || balanced)) {
 		if (!sandboxMode) {
 			sandboxMode = true;
