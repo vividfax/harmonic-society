@@ -248,7 +248,7 @@ function createButtons() {
 	for (let i = 0; i < 10; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * i + padding / 2,
-			height / 2,
+			height / 2 - 65,
 			qwerty[i],
 			actions[i]
 		);
@@ -257,7 +257,7 @@ function createButtons() {
 	for (let i = 10; i < 19; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * (i - 10) + padding / 2,
-			height / 2 + padding + 65,
+			height / 2 + padding,
 			qwerty[i],
 			actions[i]
 		);
@@ -266,7 +266,7 @@ function createButtons() {
 	for (let i = 19; i < 26; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * (i - 19) + padding / 2,
-			height / 2 + padding * 2 + 65 * 2,
+			height / 2 + padding * 2 + 65,
 			qwerty[i],
 			actions[i]
 		);
