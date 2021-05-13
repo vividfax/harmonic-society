@@ -240,15 +240,7 @@ function keyTyped() {
 		}
 	}
 }
-function buttonsLargerThanScreen() {
-	if (windowHeight < 128*3) {
-		console.log("big");
-		return true;
-	} else {
-		console.log("small");
-		return false;
-	}
-}
+
 function createButtons() {
 	let padding = 13;
 	let offsetMultiplier = 0;
