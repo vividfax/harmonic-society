@@ -240,37 +240,51 @@ function keyTyped() {
 		}
 	}
 }
-
+function buttonsLargerThanScreen() {
+	if (windowHeight < 128*3) {
+		console.log("big");
+		return true;
+	} else {
+		console.log("small");
+		return false;
+	}
+}
 function createButtons() {
 	let padding = 13;
+	let offsetMultiplier = 0;
+	let buttonHeight = 61;
+	let keyboardHeight = (buttonHeight+padding)*3;
+	let screenRemainder = windowHeight - keyboardHeight;
+	let keyboardPosition = screenRemainder * 0.666; // This moves the keyboard 2/3rds down the screen
 
 	let startPoint = width / 2 - ((65 + padding) * 10) / 2;
 	for (let i = 0; i < 10; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * i + padding / 2,
-			height / 2 - 65,
+			keyboardPosition + (65+padding)*offsetMultiplier,
 			qwerty[i],
 			actions[i]
 		);
 	}
+	offsetMultiplier++;
 	startPoint = width / 2 - ((65 + padding) * 9) / 2 - 20;
 	for (let i = 10; i < 19; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * (i - 10) + padding / 2,
-			height / 2 + padding,
+			keyboardPosition + (65+padding)*offsetMultiplier,
 			qwerty[i],
 			actions[i]
 		);
 	}
+	offsetMultiplier++;
 	startPoint = width / 2 - ((65 + padding) * 8) / 2 - 20;
 	for (let i = 19; i < 26; i++) {
 		buttons[i] = new Button(
 			startPoint + (65 + padding) * (i - 19) + padding / 2,
-			height / 2 + padding * 2 + 65,
+			keyboardPosition + (65+padding)*offsetMultiplier,
 			qwerty[i],
 			actions[i]
 		);
-		// remember this
 	}
 }
 
