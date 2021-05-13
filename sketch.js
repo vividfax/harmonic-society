@@ -247,7 +247,13 @@ function createButtons() {
 	let buttonHeight = 61;
 	let keyboardHeight = (buttonHeight+padding)*3;
 	let screenRemainder = windowHeight - keyboardHeight;
-	let keyboardPosition = screenRemainder * 0.666; // This moves the keyboard 2/3rds down the screen
+	let keyboardPosition;
+
+	if (windowHeight < 500) {
+		keyboardPosition = screenRemainder * 0.666; // This moves the keyboard 2/3rds down the screen
+	} else {
+		keyboardPosition = windowHeight/2;
+	}
 
 	let startPoint = width / 2 - ((65 + padding) * 10) / 2;
 	for (let i = 0; i < 10; i++) {
